@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/chaykov/game-reactjs/static/css/main.e6c13ad2.css",
+    "main.js": "/chaykov/game-reactjs/static/js/main.172b56f3.js",
+    "index.html": "/chaykov/game-reactjs/index.html",
+    "main.e6c13ad2.css.map": "/chaykov/game-reactjs/static/css/main.e6c13ad2.css.map",
+    "main.172b56f3.js.map": "/chaykov/game-reactjs/static/js/main.172b56f3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.172b56f3.js"
+  ]
+}
