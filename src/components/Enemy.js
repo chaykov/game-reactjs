@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import "./Enemy.css"; // Importujemy style
 
 const Enemy = () => {
   const enemies = useSelector((state) => state.enemies);
@@ -43,7 +44,7 @@ const Enemy = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       {gameLost ? (
         <div>
           <p>You lost the game!</p>
@@ -76,7 +77,7 @@ const Enemy = () => {
           {battleOver && !showSkills && (
             <button onClick={handleResetBattle}>Select Another Enemy</button>
           )}
-          <div>
+          <div className="log">
             {battleLog.map((log, index) => (
               <p key={index}>{log}</p>
             ))}

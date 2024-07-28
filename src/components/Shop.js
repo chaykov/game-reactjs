@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "./Shop.css";
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -12,21 +13,27 @@ const Shop = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Shop</h2>
       <p>Gold: {gold}</p>
-      <button
-        onClick={() => handleBuyItem("FULL")}
-        disabled={gold < 20 || showSkills || gameLost}
-      >
-        Buy Apteka FULL (20 gold)
-      </button>
-      <button
-        onClick={() => handleBuyItem("HALF")}
-        disabled={gold < 13 || showSkills || gameLost}
-      >
-        Buy Apteka HALF (13 gold)
-      </button>
+      <div className="shop-item">
+        <span>Apteka FULL (20 gold)</span>
+        <button
+          onClick={() => handleBuyItem("FULL")}
+          disabled={gold < 20 || showSkills || gameLost}
+        >
+          Buy
+        </button>
+      </div>
+      <div className="shop-item">
+        <span>Apteka HALF (13 gold)</span>
+        <button
+          onClick={() => handleBuyItem("HALF")}
+          disabled={gold < 13 || showSkills || gameLost}
+        >
+          Buy
+        </button>
+      </div>
     </div>
   );
 };
