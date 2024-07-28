@@ -17,6 +17,7 @@ const initialState = {
   gold: 100,
   battleOver: false,
   battleStarted: false,
+  gameLost: false,
   battleLog: [],
   showSkills: false,
 };
@@ -43,16 +44,18 @@ const goldReducer = (state = initialState, action) => {
         battleStarted: false,
         battleLog: [],
         showSkills: false,
+        gameLost: false,
       };
     case "RESET_BATTLE":
       return {
         ...state,
-        activeEnemyIndex: -1,
         battleOver: false,
         battleStarted: false,
         battleLog: [],
         showSkills: false,
       };
+    case "RESET_GAME":
+      return initialState;
     case "BUY_ITEM":
       return handleBuyItem(state, action.payload);
     case "GAIN_SKILL":
@@ -75,6 +78,7 @@ const handleAttack = (state) => {
 
   let goldReward = 0;
   let battleOver = false;
+  let gameLost = false;
   let newExperience = state.user.experience;
 
   if (newEnemyHealth === 0) {
@@ -85,6 +89,7 @@ const handleAttack = (state) => {
 
   if (newUserHealth === 0) {
     battleOver = true;
+    gameLost = true;
     // Użytkownik przegrał, traci połowę złota i 30% doświadczenia
     state.gold = Math.floor(state.gold / 2);
     newExperience = Math.floor(newExperience * 0.7);
@@ -126,6 +131,7 @@ const handleAttack = (state) => {
       battleOver && newEnemyHealth === 0 ? -1 : state.activeEnemyIndex, // Resetuj indeks aktywnego wroga po walce
     gold: state.gold + goldReward,
     battleOver: battleOver,
+    gameLost: gameLost,
     battleLog: battleLog,
     showSkills: battleOver && newEnemyHealth === 0,
   };
