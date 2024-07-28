@@ -13,7 +13,7 @@ const initialState = {
     { name: "Enemy3", health: 50, attack: 40, maxHealth: 50 },
     { name: "Enemy4", health: 70, attack: 35, maxHealth: 70 },
   ],
-  activeEnemyIndex: 0,
+  activeEnemyIndex: -1,
   gold: 100,
   battleOver: false,
   battleStarted: false,
@@ -47,6 +47,7 @@ const goldReducer = (state = initialState, action) => {
     case "RESET_BATTLE":
       return {
         ...state,
+        activeEnemyIndex: -1,
         battleOver: false,
         battleStarted: false,
         battleLog: [],
@@ -121,7 +122,8 @@ const handleAttack = (state) => {
       level: newUserLevel,
     },
     enemies: newEnemies,
-    activeEnemyIndex: newEnemies.length > 0 ? 0 : -1, // Resetuj indeks aktywnego wroga
+    activeEnemyIndex:
+      battleOver && newEnemyHealth === 0 ? -1 : state.activeEnemyIndex, // Resetuj indeks aktywnego wroga po walce
     gold: state.gold + goldReward,
     battleOver: battleOver,
     battleLog: battleLog,
